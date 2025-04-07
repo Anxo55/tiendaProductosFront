@@ -1,1 +1,39 @@
-<p>inicio works!</p>
+<div class="m-10 px-6 py-8 bg-gray-100 flex items-center justify-between rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+    <div class="text-left space-y-4">
+        <h1 class="text-4xl font-extrabold text-gray-800">¡Aquí encontrarás todas las variedades de productos al mejor precio!</h1>
+        <p class="text-xl text-gray-600">Entre todo tipo de categorías, encontrarás lo que necesitas</p>
+        <p class="text-xl text-gray-600">Todo el contenido que te puedas imaginar lo tenemos aquí, no dudes más y regístrate para empezar a buscar</p>
+        <div class="mt-6 flex space-x-4">
+            <button [routerLink]="['/productos']" class="bg-black text-white hover:bg-gray-800 rounded-lg px-6 py-3 transition-colors duration-300 cursor-pointer hover:scale-105">Comprar Productos</button>
+            <button [routerLink]="['/categorias']" class="border-2 border-gray-800 text-gray-800 hover:bg-gray-100 rounded-lg px-6 py-3 transition-colors duration-300 cursor-pointer hover:scale-105">Explorar Categorías</button>
+        </div>
+    </div>
+    <div>
+        <img src="/imagen-representativa.png" alt="Imagen representativa" class="max-w-xs h-auto rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
+    </div>
+</div>
+
+<div class="flex flex-col justify-center items-center space-y-4 mt-10">
+
+    <h1 class="text-4xl font-extrabold">Categorias más destacadas</h1>
+    <p class="text-gray-600 text-xl">Descubre nuestra variedad de categorias para encontrar el producto perfecto</p>
+    <div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/balon.webp" alt="Categoria 1" class="max-w-xs h-auto rounded-lg mb-4">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/portatil.png" alt="Categoria 2" class="max-w-xs h-auto rounded-lg mb-4">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/ropa.webp" alt="Categoria 3" class="max-w-xs h-auto rounded-lg mb-4">
+            </div>
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/casa.png" alt="Categoria 4" class="max-w-xs h-auto rounded-lg mb-4">
+            </div>
+        </div>   
+    </div>
+   
+    <button [routerLink]="['/categorias']" class="m-4 bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 hover:scale-105 transition duration-300">Ver todas las categorias</button>
+
+</div>

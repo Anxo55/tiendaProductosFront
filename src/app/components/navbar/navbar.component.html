@@ -1,5 +1,5 @@
 <nav class="flex items-center justify-between px-4 py-2 text-2xl font-medium">
-    <h1 class="flex-1 text-left">CompraTu</h1>
+    <h1 [routerLink]="['/']" class="flex-1 text-left cursor-pointer">CompraTu</h1>
   
     <div class="flex-1 flex justify-center space-x-6">
       <a [routerLink]="['/']">
@@ -15,10 +15,10 @@
   
     <div class="flex-1 flex justify-end space-x-4">
         <a [routerLink]="['/login']">
-            <button class="border-1 rounded-lg px-3 py-1 cursor-pointer">Iniciar sesión</button>
+            <button class="border-1 rounded-lg px-3 py-1 cursor-pointer hover:scale-105 duration-300">Iniciar sesión</button>
         </a>
         <a [routerLink]="['/register']">
-            <button class="text-white bg-black rounded-lg px-3 py-1 cursor-pointer">Registrarse</button>
+            <button class="text-white bg-black rounded-lg px-3 py-1 cursor-pointer hover:scale-105 duration-300">Registrarse</button>
         </a>
     </div>
   </nav>
