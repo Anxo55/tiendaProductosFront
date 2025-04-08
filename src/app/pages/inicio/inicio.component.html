@@ -20,20 +20,50 @@
     <div>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
             <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <h2 class="text-lg m-4 font-semibold text-gray-600">Deporte</h2>
                 <img src="/balon.webp" alt="Categoria 1" class="max-w-xs h-auto rounded-lg mb-4">
             </div>
             <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <h2 class="text-lg m-4 font-semibold text-gray-600">Tecnologia</h2>
                 <img src="/portatil.png" alt="Categoria 2" class="max-w-xs h-auto rounded-lg mb-4">
             </div>
             <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <h2 class="text-lg m-4 font-semibold text-gray-600">Moda</h2>
                 <img src="/ropa.webp" alt="Categoria 3" class="max-w-xs h-auto rounded-lg mb-4">
             </div>
             <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <h2 class="text-lg m-4 font-semibold text-gray-600">Hogar</h2>
                 <img src="/casa.png" alt="Categoria 4" class="max-w-xs h-auto rounded-lg mb-4">
             </div>
         </div>   
     </div>
    
     <button [routerLink]="['/categorias']" class="m-4 bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 hover:scale-105 transition duration-300">Ver todas las categorias</button>
+
+</div>
+<div class="flex flex-col justify-center items-center min-h-screen px-4">
+    <div class="flex flex-col justify-center items-center space-y-6 w-full max-w-7xl mt-10">
+        <h1 class="text-4xl font-extrabold text-center">Contáctanos</h1>
+        <p class="text-xl text-gray-600 text-center max-w-2xl">
+            Ante todo dispondreis de todo tipo de forma de contactar con nosotros, con varios servicios para todo tipo de disponibilidad.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-6 w-full px-4">
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="telefono.png" alt="Teléfono" class="max-w-xs h-auto rounded-lg mb-4">
+                <h2 class="text-lg font-semibold">Teléfono</h2>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/email.webp" alt="Email" class="max-w-xs h-auto rounded-lg mb-4">
+                <h2 class="text-lg font-semibold">Email</h2>
+            </div>
+
+            <div class="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 cursor-pointer">
+                <img src="/redes.png" alt="Redes Sociales" class="max-w-xs h-auto rounded-lg mb-4">
+                <h2 class="text-lg font-semibold">Redes Sociales</h2>
+            </div>
+        </div>
+    </div>
+    <button [routerLink]="['/contacto']" class="m-8 bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 hover:scale-105 duration-300 ">Contactanos ahora</button>
 
 </div>
