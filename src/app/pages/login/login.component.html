@@ -1,11 +1,11 @@
 <div class="min-h-screen flex items-center justify-center py-10">
     <form action="" class="flex flex-col gap-4 items-center justify-center bg-gray-100 rounded-lg p-8 shadow-md w-full max-w-md hover:shadow-xl duration-300">
       <h1 class="text-2xl font-medium">Inicio de sesión</h1>
-      <label for="email" class="text-lg font-medium">Email</label>
-      <input type="email" name="email" id="email" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="pepe@gmail.com">
+      <label for="usuario" class="text-lg font-medium">Usuario</label>
+      <input type="text" name="usuario" id="usuario" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="PepeDominguez69">
       <label for="contraseña" class="text-lg font-medium">Contraseña</label>
       <input type="password" name="contraseña" id="contraseña" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="Ad1234">
-      <button class="bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 hover:scale-105 duration-300">Iniciar Sesión</button>
+      <button class="bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 active:scale-90 duration-300">Iniciar Sesión</button>
       <p>¿No tiene cuenta? <span [routerLink]="['/register']" class="cursor-pointer"><strong>Registrate aquí</strong></span></p>
     </form>
   </div>
