@@ -1,15 +1,28 @@
 <div class="min-h-screen flex items-center justify-center py-10">
-    <form action="" class="flex flex-col gap-4 items-center justify-center bg-gray-100 rounded-lg p-8 shadow-md w-full max-w-md hover:shadow-xl duration-300">
-      <h1 class="text-2xl font-medium">Registrarse</h1>
+  <form (submit)="onSubmit()" class="flex flex-col gap-4 items-center justify-center bg-gray-100 rounded-lg p-8 shadow-md w-full max-w-md hover:shadow-xl duration-300" novalidate>
+    <h1 class="text-2xl font-medium">Registrarse</h1>
 
-      <label for="usuario" class="text-lg font-medium">Usuario</label>
-      <input type="text" name="usuario" id="usuario" placeholder="Anxo Campos" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200">
-      <label for="email" class="text-lg font-medium">Email</label>
-      <input type="email" name="email" id="email" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="pepe@gmail.com">
-      <label for="contraseña" class="text-lg font-medium">Contraseña</label>
-      <input type="password" name="contraseña" id="contraseña" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="Ad1234">
-      <button class="bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 active:scale-90 duration-300">Registrarse</button>
-      <p>¿Tienes cuenta? <span [routerLink]="['/login']" class="cursor-pointer"><strong>Incia tu sesión</strong></span></p> 
-    </form>
-  </div>
-  
+    <label for="usuario" class="text-lg font-medium">Usuario</label>
+    <input type="text" id="usuario" [(ngModel)]="username" name="username" required
+      placeholder="Anxo Campos"
+      class="border-2 border-gray-400 rounded-lg p-2 w-full placeholder:text-gray-400 hover:scale-105 duration-200">
+
+    <label for="email" class="text-lg font-medium">Email</label>
+    <input type="email" id="email" [(ngModel)]="email" name="email" required
+      placeholder="pepe@gmail.com"
+      class="border-2 border-gray-400 rounded-lg p-2 w-full placeholder:text-gray-400 hover:scale-105 duration-200">
+
+    <label for="contraseña" class="text-lg font-medium">Contraseña</label>
+    <input type="password" id="contraseña" [(ngModel)]="password" name="password" required
+      placeholder="Ad1234"
+      class="border-2 border-gray-400 rounded-lg p-2 w-full placeholder:text-gray-400 hover:scale-105 duration-200">
+
+    <button type="submit"
+      class="bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 active:scale-90 duration-300">Registrarse</button>
+
+    <p *ngIf="errorMessage" class="text-red-600">{{ errorMessage }}</p>
+    <p *ngIf="successMessage" class="text-green-600">{{ successMessage }}</p>
+
+    <p>¿Tienes cuenta? <span [routerLink]="['/login']" class="cursor-pointer"><strong>Inicia tu sesión</strong></span></p>
+  </form>
+</div>

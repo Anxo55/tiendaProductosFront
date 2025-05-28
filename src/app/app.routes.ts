@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 export const routes: Routes = [
 
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: "categorias", component: CategoriasComponent},
     {path: "login", component: LoginComponent},
     {path: "register", component: RegisterComponent},
-    {path: "contacto", component: ContactoComponent}
+    {path: "contacto", component: ContactoComponent},
+    {path: "perfil", component: PerfilComponent}
 
 ];

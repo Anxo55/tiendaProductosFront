@@ -1,12 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, OnDestroy {
 
+  isLoggedIn = false;
+  private tokenSub!: Subscription;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit() {
+    this.tokenSub = this.authService.token$.subscribe(token => {
+      console.log('NavbarComponent: token cambiado, nuevo estado:', !!token);
+      this.isLoggedIn = !!token;
+      this.cdr.detectChanges(); // fuerza la detección del cambio en el DOM
+    });
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
+
+  ngOnDestroy() {
+    if (this.tokenSub) {
+      this.tokenSub.unsubscribe();
+    }
+  }
 }

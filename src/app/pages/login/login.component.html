@@ -1,12 +1,23 @@
 <div class="min-h-screen flex items-center justify-center py-10">
-    <form action="" class="flex flex-col gap-4 items-center justify-center bg-gray-100 rounded-lg p-8 shadow-md w-full max-w-md hover:shadow-xl duration-300">
-      <h1 class="text-2xl font-medium">Inicio de sesión</h1>
-      <label for="usuario" class="text-lg font-medium">Usuario</label>
-      <input type="text" name="usuario" id="usuario" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="PepeDominguez69">
-      <label for="contraseña" class="text-lg font-medium">Contraseña</label>
-      <input type="password" name="contraseña" id="contraseña" class="border-2 border-gray-400 rounded-lg p2 w-full placeholder:text-gray-400 hover:scale-105 duration-200" placeholder="Ad1234">
-      <button class="bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 active:scale-90 duration-300">Iniciar Sesión</button>
-      <p>¿No tiene cuenta? <span [routerLink]="['/register']" class="cursor-pointer"><strong>Registrate aquí</strong></span></p>
-    </form>
-  </div>
-  
+  <form (submit)="onSubmit()" class="flex flex-col gap-4 items-center justify-center bg-gray-100 rounded-lg p-8 shadow-md w-full max-w-md hover:shadow-xl duration-300" novalidate>
+    <h1 class="text-2xl font-medium">Inicio de sesión</h1>
+
+    <label for="usuario" class="text-lg font-medium">Usuario</label>
+    <input type="text" id="usuario" [(ngModel)]="username" name="username" required
+      class="border-2 border-gray-400 rounded-lg p-2 w-full placeholder:text-gray-400 hover:scale-105 duration-200"
+      placeholder="PepeDominguez69">
+
+    <label for="contraseña" class="text-lg font-medium">Contraseña</label>
+    <input type="password" id="contraseña" [(ngModel)]="password" name="password" required
+      class="border-2 border-gray-400 rounded-lg p-2 w-full placeholder:text-gray-400 hover:scale-105 duration-200"
+      placeholder="Ad1234">
+
+    <button type="submit"
+      class="bg-black text-white rounded-lg px-6 py-3 cursor-pointer hover:bg-gray-800 active:scale-90 duration-300">Iniciar
+      Sesión</button>
+
+    <p *ngIf="errorMessage" class="text-red-600">{{ errorMessage }}</p>
+
+    <p>¿No tiene cuenta? <span [routerLink]="['/register']" class="cursor-pointer"><strong>Registrate aquí</strong></span></p>
+  </form>
+</div>
