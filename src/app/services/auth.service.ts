@@ -80,4 +80,10 @@ export class AuthService {
   getUserProfile(): Observable<any> {
     return this.http.get<any>(this.userUrl); // Llama al backend
   }
+
+  updateUser(id: number, data: any): Observable<any> {
+  return this.http.put<any>(`http://localhost:8080/api/usuarios/${id}`, data);
+  }
+ 
+
 }

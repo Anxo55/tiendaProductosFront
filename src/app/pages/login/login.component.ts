@@ -24,6 +24,7 @@ export class LoginComponent {
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
         this.router.navigate(['/']); // redirige a home al login exitoso
+        
       },
       error: err => {
         this.errorMessage = 'Credenciales inválidas. Intenta de nuevo.';

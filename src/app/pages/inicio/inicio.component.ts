@@ -33,4 +33,7 @@ export class InicioComponent implements OnInit{
 
   }
 
+  cerrarMensaje() {
+  this.mostrarMensaje = false;
+}
 }

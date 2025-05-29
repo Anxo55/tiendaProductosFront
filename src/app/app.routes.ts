@@ -2,11 +2,11 @@ import { Routes } from '@angular/router';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { CategoriasComponent } from './pages/categorias/categorias.component';
-import { Component } from '@angular/core';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { PerfilActualizarComponent } from './pages/perfil-actualizar/perfil-actualizar.component';
 
 export const routes: Routes = [
 
@@ -16,6 +16,7 @@ export const routes: Routes = [
     {path: "login", component: LoginComponent},
     {path: "register", component: RegisterComponent},
     {path: "contacto", component: ContactoComponent},
-    {path: "perfil", component: PerfilComponent}
+    {path: "perfil", component: PerfilComponent},
+    {path: "perfil-actualizar", component: PerfilActualizarComponent}
 
 ];
