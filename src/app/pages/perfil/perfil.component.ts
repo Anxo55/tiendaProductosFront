@@ -7,12 +7,14 @@ import { AuthService } from '../../services/auth.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './perfil.component.html',
-  styleUrl: './perfil.component.css'
+  styleUrls: ['./perfil.component.css']  
 })
 export class PerfilComponent implements OnInit {
 
   userInfo: any = null;
   loading = true;
+
+  backendUrl = 'http://localhost:8080';
 
   constructor(private authService: AuthService) {}
 
@@ -31,7 +33,7 @@ export class PerfilComponent implements OnInit {
 
   get imageUrl(): string {
     return this.userInfo?.imageUrl
-      ? this.userInfo.imageUrl
+      ? `${this.backendUrl}/uploads/${this.userInfo.imageUrl}`
       : 'https://via.placeholder.com/150';
   }
 }

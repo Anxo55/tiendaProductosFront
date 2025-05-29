@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap, map } from 'rxjs';
+import { BehaviorSubject, Observable, tap, map, catchError, switchMap } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -35,17 +35,29 @@ export class AuthService {
   login(username: string, password: string): Observable<void> {
   return this.http.post<any>(`${this.apiUrl}/login`, { username, password }).pipe(
     tap(response => {
-      console.log('login: respuesta completa del backend:', response);
-      const token = response.token || response.data?.token || response.accessToken; // intenta varios nombres comunes
+      const token = response.token || response.data?.token || response.accessToken || response.jwt;
       if (!token) {
-        console.error('No se encontró token en la respuesta');
+        throw new Error('No se encontró token en la respuesta');
       }
-      this.setTokenToLocalStorage(token ?? null);
-      this.tokenSubject.next(token ?? null);
+      this.setTokenToLocalStorage(token);
+      this.tokenSubject.next(token);
     }),
-    map(() => {})
+    // Esperamos a que se obtenga el perfil antes de continuar
+    switchMap(() => this.getUserProfile()),
+    tap(profile => {
+      console.log('Perfil de usuario:', profile);
+      localStorage.setItem('usuario', JSON.stringify(profile));
+      sessionStorage.setItem('mostrarBienvenida', 'true');
+    }),
+    map(() => {}), // devolvemos void
+    catchError(err => {
+      console.error('Error durante login:', err);
+      throw err;
+    })
   );
 }
+
+
 
   register(username: string, email: string, password: string): Observable<string> {
     return this.http.post<string>(`${this.apiUrl}/register`, { username, email, password });

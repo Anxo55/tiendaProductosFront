@@ -57,3 +57,33 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+# Dependencias instaladas
+
+## Tailwindcss
+
+### Instalar
+```
+npm install tailwindcss @tailwindcss/postcss postcss --force
+```
+
+### Configurar PostCSS (.postcssrc.json)
+```
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
+
+### Importarlo en tu archivo styles.css
+```
+@import "tailwindcss";
+```
+
+
+## Sweetalert2
+
+```
+npm install swetalert2
+```
