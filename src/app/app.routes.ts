@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { PerfilActualizarComponent } from './pages/perfil-actualizar/perfil-actualizar.component';
+import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
 
 export const routes: Routes = [
 
@@ -17,6 +18,7 @@ export const routes: Routes = [
     {path: "register", component: RegisterComponent},
     {path: "contacto", component: ContactoComponent},
     {path: "perfil", component: PerfilComponent},
-    {path: "perfil-actualizar", component: PerfilActualizarComponent}
+    {path: "perfil-actualizar", component: PerfilActualizarComponent},
+    {path: "producto/:id", component: DetalleProductoComponent}
 
 ];

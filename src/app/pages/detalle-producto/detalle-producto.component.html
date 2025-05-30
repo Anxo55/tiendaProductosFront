@@ -1,0 +1,19 @@
+<div *ngIf="loading" class="text-center mt-10">
+  <p>Cargando producto...</p>
+</div>
+
+<div *ngIf="error" class="text-center text-red-600 mt-10">
+  {{ error }}
+</div>
+
+<div *ngIf="producto && !loading" class="max-w-2xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md text-center">
+  <h2 class="text-3xl font-bold mb-4">{{ producto.name }}</h2>
+  <img [src]="producto.imageUrl" alt="Imagen del producto" class="w-64 h-64 mx-auto object-cover rounded mb-4">
+  <p class="text-gray-700 mb-2"><strong>Descripción:</strong> {{ producto.description }}</p>
+  <p class="text-gray-800 text-lg font-semibold mb-2">Precio: {{ producto.price | currency }}</p>
+  <p class="text-gray-600">Stock disponible: {{ producto.stock }}</p>
+
+  <button [routerLink]="['/productos']" class="mt-6 px-4 py-2 cursor-pointer bg-black text-white rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition">
+    Volver a productos
+  </button>
+</div>
