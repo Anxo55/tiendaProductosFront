@@ -1,0 +1,23 @@
+<div *ngIf="loading" class="text-center mt-10">
+  <p>Cargando productos de la categoría...</p>
+</div>
+
+<div *ngIf="!loading && productos.length === 0" class="text-center mt-10">
+  <p>No hay productos en esta categoría.</p>
+</div>
+
+<button [routerLink]="['/categorias']" class="bg-black text-white px-6 py-2 m-8 rounded-lg cursor-pointer hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition">Volver</button>
+
+<div *ngIf="!loading && productos.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+  <div *ngFor="let producto of productos" class="bg-white rounded-lg shadow-md p-4 text-center">
+    <img [src]="producto.imageUrl" alt="Imagen del producto"
+         class="w-full h-64 object-cover rounded-md mb-4">
+    <h3 class="text-xl font-semibold mb-1">{{ producto.name }}</h3>
+    <p class="text-gray-600 mb-2">{{ producto.description }}</p>
+    <p class="text-black font-bold mb-1">Precio: {{ producto.price | currency }}</p>
+    <p class="text-gray-500 text-sm mb-2">Stock: {{ producto.stock }}</p>
+    <a [routerLink]="['/producto', producto.id]" class="mt-2 inline-block px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition">
+      Ver más
+    </a>
+  </div>
+</div>

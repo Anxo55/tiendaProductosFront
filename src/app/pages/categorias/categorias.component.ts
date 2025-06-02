@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoriasService } from '../../services/categorias.service';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-categorias',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterLink],
   templateUrl: './categorias.component.html',
   styleUrl: './categorias.component.css'
 })

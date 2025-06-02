@@ -8,6 +8,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { PerfilActualizarComponent } from './pages/perfil-actualizar/perfil-actualizar.component';
 import { DetalleProductoComponent } from './pages/detalle-producto/detalle-producto.component';
+import { ProductosCategoriasComponent } from './pages/productos-categorias/productos-categorias.component';
+import { CarritoComponent } from './pages/carrito/carrito.component';
 
 export const routes: Routes = [
 
@@ -19,6 +21,8 @@ export const routes: Routes = [
     {path: "contacto", component: ContactoComponent},
     {path: "perfil", component: PerfilComponent},
     {path: "perfil-actualizar", component: PerfilActualizarComponent},
-    {path: "producto/:id", component: DetalleProductoComponent}
+    {path: "producto/:id", component: DetalleProductoComponent},
+    {path: "categoria/:id", component: ProductosCategoriasComponent},
+    {path: "carrito", component: CarritoComponent}
 
 ];

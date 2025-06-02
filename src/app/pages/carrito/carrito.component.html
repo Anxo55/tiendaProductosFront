@@ -1,0 +1,25 @@
+<div *ngIf="loading" class="text-center mt-10">
+  <p>Cargando carrito...</p>
+</div>
+
+<div *ngIf="!loading && carrito?.items?.length === 0" class="text-center mt-10">
+  <p>Tu carrito está vacío.</p>
+</div>
+
+<div *ngIf="!loading && carrito?.items?.length > 0" class="p-6">
+  <h2 class="text-2xl font-bold mb-4">Tu Carrito</h2>
+
+  <div *ngFor="let item of carrito.items" class="flex justify-between items-center border-b py-4">
+    <div>
+      <h3 class="text-lg font-semibold">{{ item.product.name }}</h3>
+      <p class="text-gray-600">{{ item.product.description }}</p>
+      <p class="text-sm text-gray-500">Cantidad: {{ item.quantity }}</p>
+      <p class="text-sm text-gray-700">Precio: {{ item.product.price | currency }}</p>
+    </div>
+    <button (click)="eliminarProducto(item.product.id)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Eliminar</button>
+  </div>
+
+  <div class="mt-6">
+    <button (click)="vaciarCarrito()" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-black">Vaciar Carrito</button>
+  </div>
+</div>

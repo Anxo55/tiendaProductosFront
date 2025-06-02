@@ -12,6 +12,6 @@
     <img [src]="categoria.imageUrl" alt="Imagen del producto"
          class="w-full h-64 object-cover rounded-md mb-4">
 
-    <button class="mt-2 px-4 py-2 cursor-pointer bg-black text-white rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition">Ver más</button>
+    <button [routerLink]="['/categoria', categoria.id]" class="mt-2 px-4 py-2 cursor-pointer bg-black text-white rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition">Ver más</button>
   </div>
 </div>
