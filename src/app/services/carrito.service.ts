@@ -1,8 +1,9 @@
-// src/app/services/carrito.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { CartDto } from '../models/cart.model';
+import { Pedido } from '../models/pedido.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,28 +12,28 @@ export class CarritoService {
 
   private apiUrl = 'http://localhost:8080/api/carrito';
 
-  private carritoSubject = new BehaviorSubject<any>(null);
+  private carritoSubject = new BehaviorSubject<CartDto | null>(null);
   carrito$ = this.carritoSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
-  obtenerCarrito(): Observable<any> {
-    return this.http.get<any>(this.apiUrl).pipe(
+  obtenerCarrito(): Observable<CartDto> {
+    return this.http.get<CartDto>(this.apiUrl).pipe(
       tap(data => this.carritoSubject.next(data))
     );
   }
 
-  agregarProducto(productId: number, quantity: number): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/add`, null, {
-      params: { productId, quantity }
+  agregarProducto(productId: number, quantity: number): Observable<CartDto> {
+    return this.http.post<CartDto>(`${this.apiUrl}/add`, null, {
+      params: { productId: productId.toString(), quantity: quantity.toString() }
     }).pipe(
       tap(() => this.obtenerCarrito().subscribe())
     );
   }
 
-  eliminarProducto(productId: number): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}/remove`, {
-      params: { productId }
+  eliminarProducto(productId: number): Observable<CartDto> {
+    return this.http.delete<CartDto>(`${this.apiUrl}/remove`, {
+      params: { productId: productId.toString() }
     }).pipe(
       tap(() => this.obtenerCarrito().subscribe())
     );
@@ -43,4 +44,8 @@ export class CarritoService {
       tap(() => this.carritoSubject.next({ items: [] }))
     );
   }
+
+  comprar(): Observable<void> {
+  return this.http.post<void>(`${this.apiUrl}/comprar`, {});
+}
 }

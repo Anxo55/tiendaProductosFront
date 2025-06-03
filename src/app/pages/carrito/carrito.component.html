@@ -2,24 +2,64 @@
   <p>Cargando carrito...</p>
 </div>
 
-<div *ngIf="!loading && carrito?.items?.length === 0" class="text-center mt-10">
-  <p>Tu carrito está vacío.</p>
+<div *ngIf="!loading">
+  <ng-container *ngIf="carrito?.items?.length === 0; else hayItems">
+    <p class="text-center mt-10">Tu carrito está vacío.</p>
+  </ng-container>
+
+  <ng-template #hayItems>
+    <div class="p-6">
+      <h2 class="text-2xl font-bold mb-4">Tu Carrito</h2>
+
+      <div *ngFor="let item of carrito?.items" class="flex justify-between items-center border-b py-4">
+        <img [src]="item.productImageUrl" alt="{{ item.productName }}" class="w-24 h-24 object-cover rounded" />
+        <div>
+          <h3 class="text-lg font-semibold">{{ item.productName }}</h3>
+          <p class="text-sm text-gray-500">Cantidad: {{ item.quantity }}</p>
+          <p class="text-sm text-gray-700">Precio: {{ item.productPrice | currency }}</p>
+          <p class="text-sm text-gray-800 font-bold">
+            Subtotal: {{ item.quantity * item.productPrice | currency }}
+          </p>
+        </div>
+        <button
+          (click)="eliminarProducto(item.productId)"
+          class="bg-red-500 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-red-600 hover:scale-105 active:scale-95 duration-300 transition"
+        >
+          Eliminar
+        </button>
+      </div>
+
+      <div class="mt-6 flex justify-between items-center">
+        <strong>Total: {{ getTotal() | currency }}</strong>
+        <button
+          (click)="vaciarCarrito()"
+          class="bg-black text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition"
+        >
+          Vaciar Carrito
+        </button>
+
+        <button
+          (click)="comprar()"
+          class="bg-green-600 text-white px-4 py-2 rounded-lg cursor-pointer hover:bg-green-700 hover:scale-105 active:scale-95 duration-300 transition"
+          [disabled]="carrito?.items?.length === 0 || comprando"
+        >
+          {{ comprando ? 'Procesando...' : 'Comprar' }}
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>
 
-<div *ngIf="!loading && carrito?.items?.length > 0" class="p-6">
-  <h2 class="text-2xl font-bold mb-4">Tu Carrito</h2>
+<div *ngIf="pedidoRealizado" class="mt-8 p-4 border rounded bg-green-100">
+  <h3 class="text-xl font-semibold mb-2">Compra realizada con éxito</h3>
+  <p>Fecha: {{ pedidoRealizado?.fecha | date:'medium' }}</p>
+  <p>Total: {{ pedidoRealizado?.total | currency }}</p>
 
-  <div *ngFor="let item of carrito.items" class="flex justify-between items-center border-b py-4">
-    <div>
-      <h3 class="text-lg font-semibold">{{ item.product.name }}</h3>
-      <p class="text-gray-600">{{ item.product.description }}</p>
-      <p class="text-sm text-gray-500">Cantidad: {{ item.quantity }}</p>
-      <p class="text-sm text-gray-700">Precio: {{ item.product.price | currency }}</p>
-    </div>
-    <button (click)="eliminarProducto(item.product.id)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600">Eliminar</button>
+  <div *ngFor="let item of pedidoRealizado?.items" class="mb-2">
+    {{ item.quantity }} x {{ item.productName }} - {{ item.productPrice | currency }}
   </div>
+</div>
 
-  <div class="mt-6">
-    <button (click)="vaciarCarrito()" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-black">Vaciar Carrito</button>
-  </div>
+<div *ngIf="errorCompra" class="mt-4 p-4 border rounded bg-red-100 text-red-700">
+  {{ errorCompra }}
 </div>

@@ -1,52 +1,76 @@
-// src/app/pages/carrito/carrito.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CarritoService } from '../../services/carrito.service';
+import { CartDto } from '../../models/cart.model';
+import { Pedido } from '../../models/pedido.model';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-carrito',
-  standalone: true,
-  imports: [CommonModule],
+  standalone:true,
+  imports:[CommonModule, HttpClientModule],
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.css'
+  styleUrls: ['./carrito.component.css']
 })
 export class CarritoComponent implements OnInit {
 
-  carrito: any = null;
+  carrito: CartDto = { items: [] };
   loading = true;
+  comprando = false;
+  pedidoRealizado: Pedido | null = null;
+  errorCompra: string | null = null;
 
   constructor(private carritoService: CarritoService) {}
 
   ngOnInit(): void {
-    this.obtenerCarrito();
+    this.cargarCarrito();
   }
 
-  obtenerCarrito() {
+  cargarCarrito(): void {
     this.loading = true;
     this.carritoService.obtenerCarrito().subscribe({
-      next: data => {
+      next: (data) => {
         this.carrito = data;
         this.loading = false;
       },
-      error: err => {
-        console.error('Error al cargar el carrito:', err);
+      error: () => {
         this.loading = false;
       }
     });
   }
 
-  eliminarProducto(productId: number) {
+  eliminarProducto(productId: number): void {
     this.carritoService.eliminarProducto(productId).subscribe({
-      next: () => this.obtenerCarrito(),
-      error: err => console.error('Error eliminando producto:', err)
+      next: () => this.cargarCarrito()
     });
   }
 
-  vaciarCarrito() {
+  vaciarCarrito(): void {
     this.carritoService.vaciarCarrito().subscribe({
-      next: () => this.obtenerCarrito(),
-      error: err => console.error('Error vaciando carrito:', err)
+      next: () => this.cargarCarrito()
     });
+  }
+
+  getTotal(): number {
+    return this.carrito.items.reduce((acc, item) => acc + item.productPrice * item.quantity, 0);
+  }
+
+  comprar(): void {
+    this.comprando = true;
+    this.errorCompra = null;
+    this.pedidoRealizado = null;
+
+    this.carritoService.comprar().subscribe({
+  next: () => {
+    this.pedidoRealizado = null; // si quieres mostrar mensaje manual
+    this.cargarCarrito();
+    this.comprando = false;
+  },
+  error: (err) => {
+    this.errorCompra = err.error?.message || err.message || 'Error desconocido';
+    this.comprando = false;
+  }
+});
+
   }
 }

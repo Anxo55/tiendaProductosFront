@@ -12,14 +12,14 @@
          class="w-full h-64 object-cover rounded-md mb-4">
     <h3 class="text-xl font-semibold mb-1">{{ producto.name }}</h3>
     <p class="text-gray-600 mb-2">{{ producto.description }}</p>
-    <p class="text-black font-bold mb-1">Precio: ${{ producto.price }}</p>
+    <p class="text-black font-bold mb-1">Precio: {{ producto.price }}</p>
     <p class="text-gray-500 text-sm mb-2">Stock: {{ producto.stock }}</p>
     <p *ngIf="producto.category" class="text-xs text-gray-400 italic">Categoría: {{ producto.category.name }}</p>
 
     <button [routerLink]="['/producto', producto.id]" class="mt-2 px-4 py-2 cursor-pointer bg-black text-white rounded-lg hover:bg-gray-800 hover:scale-105 active:scale-95 duration-300 transition">Más detalles</button>
 
     <button (click)="agregarAlCarrito(producto.id)"
-            class="mt-2 ml-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 hover:scale-105 active:scale-95 duration-300 transition">
+            class="mt-2 ml-2 px-4 py-2 cursor-pointer bg-green-600 text-white rounded-lg hover:bg-green-700 hover:scale-105 active:scale-95 duration-300 transition">
       Añadir a la cesta
     </button>
   </div>
