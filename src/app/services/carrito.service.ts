@@ -46,6 +46,6 @@ export class CarritoService {
   }
 
   comprar(): Observable<void> {
-  return this.http.post<void>(`${this.apiUrl}/comprar`, {});
-}
+    return this.http.post<void>(`${this.apiUrl}/comprar`, {});
+  }
 }
