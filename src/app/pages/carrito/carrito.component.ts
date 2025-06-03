@@ -3,6 +3,7 @@ import { CarritoService } from '../../services/carrito.service';
 import { CartDto } from '../../models/cart.model';
 import { Pedido } from '../../models/pedido.model';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
@@ -56,21 +57,35 @@ export class CarritoComponent implements OnInit {
   }
 
   comprar(): void {
-    this.comprando = true;
-    this.errorCompra = null;
-    this.pedidoRealizado = null;
+  this.comprando = true;
+  this.errorCompra = null;
+  this.pedidoRealizado = null;
 
-    this.carritoService.comprar().subscribe({
-  next: () => {
-    this.pedidoRealizado = null; // si quieres mostrar mensaje manual
-    this.cargarCarrito();
-    this.comprando = false;
-  },
-  error: (err) => {
-    this.errorCompra = err.error?.message || err.message || 'Error desconocido';
-    this.comprando = false;
-  }
-});
+  this.carritoService.comprar().subscribe({
+    next: (pedido: any) => { // Usa "Pedido" si estás seguro del tipo
+      this.pedidoRealizado = pedido;
+      this.cargarCarrito();
+      this.comprando = false;
 
-  }
+      Swal.fire({
+        icon: 'success',
+        title: '¡Compra realizada!',
+        text: 'Gracias por tu pedido. Revisa tu correo para más detalles.',
+        timer: 2500,
+        showConfirmButton: false
+      });
+    },
+    error: (err) => {
+      this.errorCompra = err.error?.message || err.message || 'Error desconocido';
+      this.comprando = false;
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error en la compra',
+        text: this.errorCompra,
+      });
+    }
+  });
+}
+
 }
